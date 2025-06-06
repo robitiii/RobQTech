@@ -1,5 +1,5 @@
-
 import { useState } from 'react';
+import { toast } from 'sonner';
 import '../styles/Booking.css';
 
 interface FormData {
@@ -101,7 +101,13 @@ const Booking = () => {
     if (validateForm()) {
       console.log('Form submitted:', formData);
       // Here you would typically send the data to your backend
-      alert('Thank you for your booking request! I will get back to you soon.');
+      
+      toast.success('Booking Request Submitted!', {
+        description: 'Thank you for your booking request! I will get back to you soon.',
+        duration: 5000,
+        className: 'booking-toast',
+        position: 'top-center',
+      });
       
       // Reset form
       setFormData({
