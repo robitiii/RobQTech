@@ -1,0 +1,130 @@
+p{
+  color:#fff;
+}
+.social-media {
+  padding: 5rem 0;
+  background: linear-gradient(135deg, #1e40af 0%, #06b6d4 100%);
+  color: white;
+}
+
+.social-content h2 {
+  color: white;
+  margin-bottom: 1.5rem;
+}
+
+.social-subtitle {
+  color:#fff;
+  font-weight:bolder;
+  font-size: 1.2rem;
+  margin-bottom: 3rem;
+  opacity: 0.9;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.6;
+}
+
+.social-links {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-bottom: 4rem;
+  flex-wrap: wrap;
+}
+
+.social-link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  text-decoration: none;
+  color: white;
+  transition: all 0.3s ease;
+  animation: fadeInUp 0.8s ease-out;
+}
+
+.social-link:hover {
+  transform: translateY(-10px);
+}
+
+.social-icon {
+  width: 80px;
+  height: 80px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.social-link:hover .social-icon {
+  background: var(--social-color);
+  transform: scale(1.1);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.social-name {
+  font-weight: 600;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+}
+
+.social-link:hover .social-name {
+  color: var(--social-color);
+  text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+}
+
+.social-cta {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  padding: 3rem 2rem;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.social-cta p {
+  color:#fff;
+  font-size: 1.3rem;
+  margin-bottom: 2rem;
+  opacity: 0.9;
+}
+
+.social-cta .btn {
+  background: white;
+  color: #1e40af;
+  font-weight: 600;
+}
+.social-cta .btn:hover {
+  background: #f8fafc;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+@media (max-width: 768px) {
+  .social-media {
+    padding: 3rem 0;
+  }
+  
+  .social-links {
+    gap: 1.5rem;
+  }
+  
+  .social-icon {
+    width: 70px;
+    height: 70px;
+  }
+  
+  .social-cta {
+    padding: 2rem 1.5rem;
+    margin: 0 1rem;
+  }
+  
+  .social-cta p {
+    font-size: 1.1rem;
+  }
+}
