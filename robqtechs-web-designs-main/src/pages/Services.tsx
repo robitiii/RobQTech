@@ -135,7 +135,6 @@ const Services = () => {
             <div className="info-card fade-in-left">
               <h3>Why Choose RobQTech?</h3>
               <ul>
-                <li>✓ 5+ years of web development experience</li>
                 <li>✓ Modern, cutting-edge technologies</li>
                 <li>✓ 100% client satisfaction guarantee</li>
                 <li>✓ Fast turnaround times</li>
