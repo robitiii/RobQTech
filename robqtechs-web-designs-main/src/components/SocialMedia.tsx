@@ -13,7 +13,7 @@ const SocialMedia = () => {
     {
       name: 'LinkedIn',
       icon: <Linkedin size={24} />,
-      url: '#',
+      url: 'https://www.linkedin.com/in/robert-erady',
       color: '#0077b5'
     },
   ];

@@ -6,7 +6,7 @@ const Services = () => {
   const plans = [
     {
       name: 'Basic Website',
-      price: 'R750',
+      price: 'R749.99',
       popular: false,
       description: 'Best for influencers and career reflections',
       features: [
@@ -21,7 +21,7 @@ const Services = () => {
     },
     {
       name: 'Moderate Website',
-      price: 'R1200',
+      price: 'R1499.99',
       popular: true,
       description: 'Best for small businesses',
       features: [
@@ -38,7 +38,7 @@ const Services = () => {
     },
     {
       name: 'Advanced Website',
-      price: 'R2400',
+      price: 'R2999.99',
       popular: false,
       description: 'Best for big businesses',
       features: [
@@ -56,7 +56,7 @@ const Services = () => {
       ]
     },
     {
-      name: 'Website Modification Service',
+      name: 'Website Modification',
       price: 'Price Varies',
       popular: false,
       description: 'For clients who already have a website',

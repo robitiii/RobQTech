@@ -26,7 +26,7 @@ const Booking = () => {
   const packages = [
     {
       name: 'Basic Website',
-      price: 'NOW R500',
+      price: 'NOW R499.99',
       features: [
         'Up to 5 pages',
         'Best for influencers and career reflections',
@@ -36,7 +36,7 @@ const Booking = () => {
     },
     {
       name: 'Moderate Website',
-      price: 'R800',
+      price: 'R1499.99',
       features: [
         'Up to 10 pages',
         'Best for small businesses',
@@ -47,7 +47,7 @@ const Booking = () => {
     },
     {
       name: 'Advanced Website',
-      price: 'R1600',
+      price: 'R2999.99',
       features: [
         '20+ pages',
         'Best for big businesses',
@@ -57,7 +57,7 @@ const Booking = () => {
       ]
     },
     {
-      name: 'Website Modification Service',
+      name: 'Website Modification',
       price: 'Price Varies',
       features: [
         'For clients who already have a website',
