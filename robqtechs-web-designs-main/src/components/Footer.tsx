@@ -15,8 +15,7 @@ const Footer = () => {
               <span className="logo-subtitle">Web</span>
             </div>
             <p className="footer-description">
-              Professional web design and development services that bring your 
-              vision to life. Creating stunning, responsive websites that drive results.
+            Transforming your ideas into powerful, pixel-perfect websites. We craft sleek, responsive designs that don’t just look great — they deliver real results.
             </p>
           </div>
 
@@ -44,11 +43,11 @@ const Footer = () => {
             <div className="contact-info">
               <div className="contact-item">
                 <Mail size={16} />
-                <span>info@robqtech.com</span>
+                <span>robitiierady@gmail.com</span>
               </div>
               <div className="contact-item">
                 <Phone size={16} />
-                <span>+27 (0) 123 456 789</span>
+                <span>+27 74 654 3765</span>
               </div>
               <div className="contact-item">
                 <MapPin size={16} />

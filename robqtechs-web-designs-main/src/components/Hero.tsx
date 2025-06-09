@@ -20,12 +20,10 @@ const Hero = () => {
             <h1 className="hero-title">
               Professional Web Design
               <br />
-              <span className="hero-highlight">That Converts</span>
+              <span className="hero-highlight">That Ignites</span>
             </h1>
             <p className="hero-subtitle">
-              Transform your business with stunning, responsive websites that captivate 
-              your audience and drive results. Expert web design and development services 
-              tailored to your unique needs.
+            your brand with stunning, responsive websites that captivate and convert. Custom web design and development tailored to your vision — built to perform, designed to impress.
             </p>
             <div className="hero-cta">
               <Link to="/booking" className="btn btn-primary hero-btn">

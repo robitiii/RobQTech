@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { toast } from 'sonner';
+import { submitBookingForm, type BookingFormData } from '../services/api';
 import '../styles/Booking.css';
 
 interface FormData {
@@ -20,11 +21,12 @@ const Booking = () => {
   });
 
   const [errors, setErrors] = useState<Partial<FormData>>({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const packages = [
     {
       name: 'Basic Website',
-      price: 'R500',
+      price: 'NOW R500',
       features: [
         'Up to 5 pages',
         'Best for influencers and career reflections',
@@ -45,7 +47,7 @@ const Booking = () => {
     },
     {
       name: 'Advanced Website',
-      price: 'R1,600',
+      price: 'R1600',
       features: [
         '20+ pages',
         'Best for big businesses',
@@ -95,29 +97,40 @@ const Booking = () => {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
     if (validateForm()) {
-      console.log('Form submitted:', formData);
-      // Here you would typically send the data to your backend
-      
-      toast.success('Booking Request Submitted!', {
-        description: 'Thank you for your booking request! I will get back to you soon.',
-        duration: 5000,
-        className: 'booking-toast',
-        position: 'top-center',
-      });
-      
-      // Reset form
-      setFormData({
-        name: '',
-        email: '',
-        phone: '',
-        projectType: '',
-        description: ''
-      });
-      setErrors({});
+      try {
+        setIsSubmitting(true);
+        await submitBookingForm(formData);
+        
+        toast.success('Booking Request Submitted!', {
+          description: 'Thank you for your booking request! I will get back to you soon.',
+          duration: 5000,
+          className: 'booking-toast',
+          position: 'top-center',
+        });
+        
+        // Reset form
+        setFormData({
+          name: '',
+          email: '',
+          phone: '',
+          projectType: '',
+          description: ''
+        });
+        setErrors({});
+      } catch (error) {
+        toast.error('Submission Failed', {
+          description: error instanceof Error ? error.message : 'Failed to submit booking request. Please try again.',
+          duration: 5000,
+          className: 'booking-toast',
+          position: 'top-center',
+        });
+      } finally {
+        setIsSubmitting(false);
+      }
     }
   };
 
@@ -248,8 +261,12 @@ const Booking = () => {
                 {errors.description && <span className="error-message">{errors.description}</span>}
               </div>
 
-              <button type="submit" className="btn btn-primary submit-btn">
-                Submit Booking Request
+              <button 
+                type="submit" 
+                className="btn btn-primary submit-btn"
+                disabled={isSubmitting}
+              >
+                {isSubmitting ? 'Submitting...' : 'Submit Booking Request'}
               </button>
             </form>
           </div>

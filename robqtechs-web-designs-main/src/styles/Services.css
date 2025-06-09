@@ -1,4 +1,3 @@
-
 .services {
   padding: 3rem 0 5rem;
   background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
@@ -83,6 +82,8 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  white-space: nowrap;
+  z-index: 1;
 }
 
 .plan-header {
@@ -202,6 +203,7 @@
   
   .pricing-card {
     padding: 2rem;
+    margin-top: 1.5rem;
   }
   
   .plan-price {
@@ -214,5 +216,26 @@
   
   .pricing-grid {
     grid-template-columns: 1fr;
+  }
+
+  .popular-badge {
+    font-size: 0.85rem;
+    padding: 0.4rem 1.2rem;
+  }
+}
+
+@media (max-width: 375px) {
+  .pricing-card {
+    padding: 1.5rem;
+    margin-top: 2rem;
+  }
+
+  .popular-badge {
+    font-size: 0.8rem;
+    padding: 0.35rem 1rem;
+  }
+
+  .plan-header {
+    margin-top: 0.5rem;
   }
 }
