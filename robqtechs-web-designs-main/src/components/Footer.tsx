@@ -15,7 +15,7 @@ const Footer = () => {
               <span className="logo-subtitle">Web</span>
             </div>
             <p className="footer-description">
-            Transforming your ideas into powerful, pixel-perfect websites. We craft sleek, responsive designs that don’t just look great — they deliver real results.
+            Transforming your ideas into powerful, pixel-perfect websites. We craft sleek, responsive designs that don't just look great — they deliver real results.
             </p>
           </div>
 
@@ -31,10 +31,10 @@ const Footer = () => {
           <div className="footer-section">
             <h4>Services</h4>
             <ul className="footer-links">
-              <li><a href="/services">Basic Website</a></li>
-              <li><a href="/services">Moderate Website</a></li>
-              <li><a href="/services">Advanced Website</a></li>
-              <li><a href="/booking">Custom Solutions</a></li>
+              <li><Link to="/services#basic">Basic Website</Link></li>
+              <li><Link to="/services#moderate">Moderate Website</Link></li>
+              <li><Link to="/services#advanced">Advanced Website</Link></li>
+              <li><Link to="/services#custom">Custom Solutions</Link></li>
             </ul>
           </div>
 
