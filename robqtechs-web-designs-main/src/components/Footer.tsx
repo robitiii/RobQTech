@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Mail, Phone, MapPin } from 'lucide-react';
+import { Mail, Phone, MapPin, Zap, RefreshCw } from 'lucide-react';
 import '../styles/Footer.css';
 
 const Footer = () => {
@@ -22,7 +22,7 @@ const Footer = () => {
               <span className="logo-subtitle">Web</span>
             </div>
             <p className="footer-description">
-            Transforming your ideas into powerful, pixel-perfect websites. We craft sleek, responsive designs that don't just look great — they deliver real results.
+              Transforming your ideas into powerful, pixel-perfect websites. We craft sleek, responsive designs that don't just look great — they deliver real results.
             </p>
           </div>
 
@@ -36,12 +36,50 @@ const Footer = () => {
           </div>
 
           <div className="footer-section">
-            <h4>Services</h4>
+            <h4>One-Time Builds</h4>
             <ul className="footer-links">
-              <li><Link to="/services#basic" onClick={scrollToTop}>Basic Website</Link></li>
-              <li><Link to="/services#moderate" onClick={scrollToTop}>Moderate Website</Link></li>
-              <li><Link to="/services#advanced" onClick={scrollToTop}>Advanced Website</Link></li>
-              <li><Link to="/services#custom" onClick={scrollToTop}>Custom Solutions</Link></li>
+              <li>
+                <Link to="/services#basic" onClick={scrollToTop}>
+                  <Zap size={16} />
+                  Basic Website
+                </Link>
+              </li>
+              <li>
+                <Link to="/services#moderate" onClick={scrollToTop}>
+                  <Zap size={16} />
+                  Moderate Website
+                </Link>
+              </li>
+              <li>
+                <Link to="/services#advanced" onClick={scrollToTop}>
+                  <Zap size={16} />
+                  Advanced Website
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          <div className="footer-section">
+            <h4>Recurring Care</h4>
+            <ul className="footer-links">
+              <li>
+                <Link to="/services#starter" onClick={scrollToTop}>
+                  <RefreshCw size={16} />
+                  Starter Care
+                </Link>
+              </li>
+              <li>
+                <Link to="/services#business" onClick={scrollToTop}>
+                  <RefreshCw size={16} />
+                  Business Care
+                </Link>
+              </li>
+              <li>
+                <Link to="/services#premium" onClick={scrollToTop}>
+                  <RefreshCw size={16} />
+                  Premium Care
+                </Link>
+              </li>
             </ul>
           </div>
 
