@@ -5,6 +5,13 @@ import '../styles/Footer.css';
 const Footer = () => {
   const currentYear = new Date().getFullYear();
 
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  };
+
   return (
     <footer className="footer">
       <div className="container">
@@ -22,19 +29,19 @@ const Footer = () => {
           <div className="footer-section">
             <h4>Quick Links</h4>
             <ul className="footer-links">
-              <li><Link to="/">Home</Link></li>
-              <li><Link to="/services">Services</Link></li>
-              <li><Link to="/booking">Book Now</Link></li>
+              <li><Link to="/" onClick={scrollToTop}>Home</Link></li>
+              <li><Link to="/services" onClick={scrollToTop}>Services</Link></li>
+              <li><Link to="/booking" onClick={scrollToTop}>Book Now</Link></li>
             </ul>
           </div>
 
           <div className="footer-section">
             <h4>Services</h4>
             <ul className="footer-links">
-              <li><Link to="/services#basic">Basic Website</Link></li>
-              <li><Link to="/services#moderate">Moderate Website</Link></li>
-              <li><Link to="/services#advanced">Advanced Website</Link></li>
-              <li><Link to="/services#custom">Custom Solutions</Link></li>
+              <li><Link to="/services#basic" onClick={scrollToTop}>Basic Website</Link></li>
+              <li><Link to="/services#moderate" onClick={scrollToTop}>Moderate Website</Link></li>
+              <li><Link to="/services#advanced" onClick={scrollToTop}>Advanced Website</Link></li>
+              <li><Link to="/services#custom" onClick={scrollToTop}>Custom Solutions</Link></li>
             </ul>
           </div>
 
@@ -62,8 +69,8 @@ const Footer = () => {
             <p>&copy; {currentYear} RobQTech Web. All rights reserved.</p>
           </div>
           <div className="footer-legal">
-            <a href="#">Privacy Policy</a>
-            <a href="#">Terms of Service</a>
+            <a href="#" onClick={scrollToTop}>Privacy Policy</a>
+            <a href="#" onClick={scrollToTop}>Terms of Service</a>
           </div>
         </div>
       </div>
