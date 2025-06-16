@@ -19,7 +19,7 @@ const Footer = () => {
           <div className="footer-section">
             <div className="footer-logo">
               <span className="logo-text">RobQTech</span>
-              <span className="logo-subtitle">Web</span>
+              <span className="logo-subtitle">Web Designs</span>
             </div>
             <p className="footer-description">
               Transforming your ideas into powerful, pixel-perfect websites. We craft sleek, responsive designs that don't just look great — they deliver real results.

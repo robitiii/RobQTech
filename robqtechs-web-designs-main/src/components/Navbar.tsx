@@ -30,8 +30,8 @@ const Navbar = () => {
     <nav className={`navbar ${scrolled ? 'scrolled' : ''}`}>
       <div className="navbar-container">
         <Link to="/" className="navbar-logo" onClick={closeMenu}>
-          <span className="logo-text">RobQTech Web</span>
-          <span className="logo-subtitle">Professional</span>
+          <span className="logo-text">RobQTech</span>
+          <span className="logo-subtitle">Web Designs</span>
         </Link>
 
         <div className={`navbar-menu ${isOpen ? 'active' : ''}`}>
