@@ -6,10 +6,13 @@
 
 .booking-header {
   margin-bottom: 4rem;
+  text-align: center;
 }
 
 .booking-header h1 {
   margin-bottom: 1rem;
+  color: #1e40af;
+  font-size: 2.5rem;
 }
 
 .booking-subtitle {
@@ -20,20 +23,41 @@
   line-height: 1.6;
 }
 
-.payment-notice {
-  background: linear-gradient(135deg, #1e40af, #06b6d4);
+.service-category-toggle {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 3rem;
+  background: white;
+  padding: 0.5rem;
   border-radius: 12px;
-  padding: 1.5rem;
-  margin: 2rem auto;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
   max-width: 500px;
-  box-shadow: 0 4px 20px rgba(30, 64, 175, 0.2);
+  margin: 0 auto 3rem;
 }
 
-.payment-text {
+.toggle-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem 2rem;
+  border: none;
+  background: transparent;
+  color: #64748b;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.toggle-btn:hover {
+  color: #1e40af;
+  background: rgba(30, 64, 175, 0.05);
+}
+
+.toggle-btn.active {
+  background: #1e40af;
   color: white;
-  margin: 0;
-  font-size: 1.1rem;
-  text-align: center;
 }
 
 .booking-content {
@@ -63,6 +87,7 @@
   cursor: pointer;
   transition: all 0.3s ease;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  position: relative;
 }
 
 .package-card:hover {
@@ -90,7 +115,14 @@
   background-clip: text;
   -webkit-background-clip: text;
   color: transparent;
+  margin-bottom: 1rem;
+}
+
+.package-description {
+  color: #64748b;
   margin-bottom: 1.5rem;
+  font-size: 0.95rem;
+  line-height: 1.5;
 }
 
 .package-features {
@@ -135,7 +167,9 @@
 }
 
 .form-group label {
-  display: block;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
   margin-bottom: 0.5rem;
   color: #374151;
   font-weight: 600;
@@ -174,6 +208,24 @@
   display: block;
 }
 
+.payment-notice {
+  display:flex;
+  justify-content: center;
+  align-items:center;
+  background: linear-gradient(135deg, #1e40af, #06b6d4);
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin: 2rem 0;
+  box-shadow: 0 4px 20px rgba(30, 64, 175, 0.2);
+}
+
+.payment-text {
+  color: white;
+  margin: 0;
+  font-size: 1.1rem;
+  text-align: center;
+}
+
 .submit-btn {
   display: inline-flex;
   align-items: center;
@@ -183,11 +235,42 @@
   margin: 2rem auto 0;
   display: block;
   width: fit-content;
+  background: linear-gradient(135deg, #1e40af, #06b6d4);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.submit-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(30, 64, 175, 0.2);
+}
+
+.submit-btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none;
 }
 
 @media (max-width: 768px) {
   .booking {
     padding: 2rem 0 3rem;
+  }
+  
+  .booking-header h1 {
+    font-size: 2rem;
+  }
+  
+  .service-category-toggle {
+    flex-direction: column;
+    padding: 0.5rem;
+  }
+  
+  .toggle-btn {
+    width: 100%;
+    justify-content: center;
   }
   
   .booking-form {
@@ -250,4 +333,24 @@
     transform: translateY(-100%);
     opacity: 0;
   }
+}
+
+.popular-badge {
+  position: absolute;
+  top: -12px;
+  right: 20px;
+  background: linear-gradient(135deg, #1e40af, #06b6d4);
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  box-shadow: 0 4px 15px rgba(30, 64, 175, 0.2);
+}
+
+.popular-badge svg {
+  color: #fbbf24;
 }

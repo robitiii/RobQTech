@@ -1,13 +1,17 @@
 import { useState } from 'react';
 import { toast } from 'sonner';
 import { submitBookingForm, type BookingFormData } from '../services/api';
+import { Zap, RefreshCw, Calendar, Building2, Star } from 'lucide-react';
 import '../styles/Booking.css';
 
 interface FormData {
   name: string;
   email: string;
   phone: string;
-  projectType: string;
+  businessName: string;
+  serviceCategory: 'one-time' | 'recurring';
+  serviceType: string;
+  startDate: string;
   description: string;
 }
 
@@ -16,54 +20,96 @@ const Booking = () => {
     name: '',
     email: '',
     phone: '',
-    projectType: '',
+    businessName: '',
+    serviceCategory: 'one-time',
+    serviceType: '',
+    startDate: '',
     description: ''
   });
 
   const [errors, setErrors] = useState<Partial<FormData>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const packages = [
+  const oneTimePlans = [
     {
       name: 'Basic Website',
-      price: 'NOW R499.99',
+      price: 'R499.99',
+      description: 'Perfect for personal brands and small projects',
+      popular: true,
       features: [
         'Up to 5 pages',
-        'Best for influencers and career reflections',
-        'Free domain and hosting on Vercel',
-        'Optional custom domain: minimum R200/year'
+        'Responsive design',
+        'Basic SEO optimization',
+        'Contact form',
+        'Free domain and hosting on Vercel'
       ]
     },
     {
       name: 'Moderate Website',
       price: 'R1499.99',
+      description: 'Ideal for growing businesses',
+      popular: false,
       features: [
         'Up to 10 pages',
-        'Best for small businesses',
         'Advanced animations',
         'CMS integration',
-        'Advanced SEO'
+        'Advanced SEO',
+        'Custom features'
       ]
     },
     {
       name: 'Advanced Website',
       price: 'R2999.99',
+      description: 'For established businesses',
+      popular: false,
       features: [
         '20+ pages',
-        'Best for big businesses',
         'E-commerce functionality',
         'Custom features',
-        'Performance optimization'
+        'Performance optimization',
+        'Priority support'
+      ]
+    }
+  ];
+
+  const recurringPlans = [
+    {
+      name: 'Starter Care',
+      price: 'R299/month',
+      description: 'Basic maintenance and support',
+      popular: true,
+      features: [
+        'Weekly backups',
+        'Security updates',
+        'Basic content updates',
+        'Email support',
+        'Performance monitoring'
       ]
     },
     {
-      name: 'Website Modification',
-      price: 'Price Varies',
+      name: 'Business Care',
+      price: 'R599/month',
+      description: 'Comprehensive website management',
+      popular: false,
       features: [
-        'For clients who already have a website',
-        'Design changes and improvements',
-        'Content updates',
-        'Quote provided after consultation'
+        'Daily backups',
+        'Priority security updates',
+        'Unlimited content updates',
+        'Priority support',
+        'Advanced analytics'
+      ]
+    },
+    {
+      name: 'Premium Care',
+      price: 'R999/month',
+      description: 'Full-service website management',
+      popular: false,
+      features: [
+        'Real-time backups',
+        '24/7 security monitoring',
+        'Unlimited changes',
+        'Dedicated support',
+        'Custom development'
       ]
     }
   ];
@@ -85,8 +131,12 @@ const Booking = () => {
       newErrors.phone = 'Phone is required';
     }
 
-    if (!formData.projectType) {
-      newErrors.projectType = 'Please select a package';
+    if (!formData.serviceType) {
+      newErrors.serviceType = 'Please select a service';
+    }
+
+    if (!formData.startDate) {
+      newErrors.startDate = 'Please select a start date';
     }
 
     if (!formData.description.trim()) {
@@ -117,7 +167,10 @@ const Booking = () => {
           name: '',
           email: '',
           phone: '',
-          projectType: '',
+          businessName: '',
+          serviceCategory: 'one-time',
+          serviceType: '',
+          startDate: '',
           description: ''
         });
         setErrors({});
@@ -150,36 +203,64 @@ const Booking = () => {
     }
   };
 
+  const handleCategoryChange = (category: 'one-time' | 'recurring') => {
+    setFormData(prev => ({
+      ...prev,
+      serviceCategory: category,
+      serviceType: '' // Reset service type when category changes
+    }));
+  };
+
+  const selectedPlans = formData.serviceCategory === 'one-time' ? oneTimePlans : recurringPlans;
+
   return (
     <div className="booking">
       <div className="container">
         <div className="booking-header">
-          <h1 className="fade-in-up">Book Your Website</h1>
+          <h1 className="fade-in-up">Book Your Service</h1>
           <p className="booking-subtitle fade-in-up">
-            Ready to bring your vision to life? Choose your package and let's get started!
+            Choose your service category and let's get started on your project!
           </p>
-          
-          <div className="payment-notice fade-in-up">
-            <p className="payment-text">
-              <strong>A 25% deposit is required for all services before proceeding.</strong>
-            </p>
-          </div>
         </div>
 
         <div className="booking-content">
+          <div className="service-category-toggle fade-in-up">
+            <button
+              className={`toggle-btn ${formData.serviceCategory === 'one-time' ? 'active' : ''}`}
+              onClick={() => handleCategoryChange('one-time')}
+            >
+              <Zap size={20} />
+              One-Time Builds
+            </button>
+            <button
+              className={`toggle-btn ${formData.serviceCategory === 'recurring' ? 'active' : ''}`}
+              onClick={() => handleCategoryChange('recurring')}
+            >
+              <RefreshCw size={20} />
+              Recurring Care
+            </button>
+          </div>
+
           <div className="packages-section fade-in-up">
-            <h2>Choose Your Package</h2>
+            <h2>Available {formData.serviceCategory === 'one-time' ? 'Build' : 'Care'} Plans</h2>
             <div className="packages-grid">
-              {packages.map((pkg, index) => (
+              {selectedPlans.map((plan, index) => (
                 <div 
-                  key={pkg.name} 
-                  className={`package-card ${formData.projectType === pkg.name ? 'selected' : ''}`}
-                  onClick={() => setFormData(prev => ({ ...prev, projectType: pkg.name }))}
+                  key={plan.name} 
+                  className={`package-card ${formData.serviceType === plan.name ? 'selected' : ''}`}
+                  onClick={() => setFormData(prev => ({ ...prev, serviceType: plan.name }))}
                 >
-                  <h3>{pkg.name}</h3>
-                  <div className="package-price">{pkg.price}</div>
+                  {plan.popular && (
+                    <div className="popular-badge">
+                      <Star size={16} />
+                      Most Popular
+                    </div>
+                  )}
+                  <h3>{plan.name}</h3>
+                  <div className="package-price">{plan.price}</div>
+                  <p className="package-description">{plan.description}</p>
                   <ul className="package-features">
-                    {pkg.features.map((feature, idx) => (
+                    {plan.features.map((feature, idx) => (
                       <li key={idx}>{feature}</li>
                     ))}
                   </ul>
@@ -200,6 +281,7 @@ const Booking = () => {
                   value={formData.name}
                   onChange={handleChange}
                   className={errors.name ? 'error' : ''}
+                  placeholder="Enter your full name"
                 />
                 {errors.name && <span className="error-message">{errors.name}</span>}
               </div>
@@ -213,6 +295,7 @@ const Booking = () => {
                   value={formData.email}
                   onChange={handleChange}
                   className={errors.email ? 'error' : ''}
+                  placeholder="Enter your email address"
                 />
                 {errors.email && <span className="error-message">{errors.email}</span>}
               </div>
@@ -226,25 +309,60 @@ const Booking = () => {
                   value={formData.phone}
                   onChange={handleChange}
                   className={errors.phone ? 'error' : ''}
+                  placeholder="Enter your phone number"
                 />
                 {errors.phone && <span className="error-message">{errors.phone}</span>}
               </div>
 
               <div className="form-group">
-                <label htmlFor="projectType">Selected Package *</label>
-                <select
-                  id="projectType"
-                  name="projectType"
-                  value={formData.projectType}
+                <label htmlFor="businessName">
+                  <Building2 size={16} />
+                  Business/Brand Name (Optional)
+                </label>
+                <input
+                  type="text"
+                  id="businessName"
+                  name="businessName"
+                  value={formData.businessName}
                   onChange={handleChange}
-                  className={errors.projectType ? 'error' : ''}
+                  placeholder="Enter your business or brand name"
+                />
+              </div>
+
+              <div className="form-group">
+                <label htmlFor="serviceType">Selected Service *</label>
+                <select
+                  id="serviceType"
+                  name="serviceType"
+                  value={formData.serviceType}
+                  onChange={handleChange}
+                  className={errors.serviceType ? 'error' : ''}
                 >
-                  <option value="">Select a package</option>
-                  {packages.map(pkg => (
-                    <option key={pkg.name} value={pkg.name}>{pkg.name}</option>
+                  <option value="">Select a service</option>
+                  {selectedPlans.map(plan => (
+                    <option key={plan.name} value={plan.name}>
+                      {plan.name} - {plan.price}
+                    </option>
                   ))}
                 </select>
-                {errors.projectType && <span className="error-message">{errors.projectType}</span>}
+                {errors.serviceType && <span className="error-message">{errors.serviceType}</span>}
+              </div>
+
+              <div className="form-group">
+                <label htmlFor="startDate">
+                  <Calendar size={16} />
+                  Preferred Start Date *
+                </label>
+                <input
+                  type="date"
+                  id="startDate"
+                  name="startDate"
+                  value={formData.startDate}
+                  onChange={handleChange}
+                  className={errors.startDate ? 'error' : ''}
+                  min={new Date().toISOString().split('T')[0]}
+                />
+                {errors.startDate && <span className="error-message">{errors.startDate}</span>}
               </div>
 
               <div className="form-group">
@@ -261,12 +379,22 @@ const Booking = () => {
                 {errors.description && <span className="error-message">{errors.description}</span>}
               </div>
 
+              <div className="payment-notice">
+                <p className="payment-text">
+                  {formData.serviceCategory === 'one-time' ? (
+                    <strong>A 25% deposit is required to start. Full payment before handover.</strong>
+                  ) : (
+                    <strong>R300 setup fee required. Monthly billing starts after setup.</strong>
+                  )}
+                </p>
+              </div>
+
               <button 
                 type="submit" 
                 className="btn btn-primary submit-btn"
                 disabled={isSubmitting}
               >
-                {isSubmitting ? 'Submitting...' : 'Submit Booking Request'}
+                {isSubmitting ? 'Submitting...' : 'Confirm Booking'}
               </button>
             </form>
           </div>
